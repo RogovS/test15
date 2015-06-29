@@ -1,0 +1,9 @@
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\bin\Debug\test15.exe.config
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\bin\Debug\test15.exe
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\bin\Debug\test15.pdb
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.csprojResolveAssemblyReference.cache
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.Form1.resources
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.Properties.Resources.resources
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.csproj.GenerateResource.Cache
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.exe
+c:\users\serega\documents\visual studio 2013\Projects\test15\test15\obj\Debug\test15.pdb
