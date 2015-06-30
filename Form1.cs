@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace test15
 {
@@ -18,6 +19,7 @@ namespace test15
         }
 
         Button[] buttons = new Button[16];
+        int empty;
 
         private static void ShuffleArray<T>(T[] array)
         {
@@ -44,10 +46,12 @@ namespace test15
                     buttons[i + j * 4].Size = new Size(80, 80);
                     buttons[i + j * 4].Font = new Font("Microsoft Sans Serif", 24.0f);
                     buttons[i + j * 4].Location = new Point(10 + 85 * i, 10 + 85 * j);
+                    buttons[i + j * 4].Click += new EventHandler(Buttons_Click);
                     this.Controls.Add(buttons[i + j * 4]);
                     if (array[i + j * 4] == 16)
                     {
-                        buttons[i + j * 4].Text = "";
+                        buttons[i + j * 4].Visible = false;
+                        empty = i + j * 4;
                     }
                     else
                     {
@@ -56,5 +60,35 @@ namespace test15
                 }
             }
         }
+
+        private void Buttons_Click(object sender, EventArgs e)
+        {
+            Button Now = (Button)sender;
+            int x = Now.Location.X - buttons[empty].Location.X;
+            int y = Now.Location.Y - buttons[empty].Location.Y;
+            if (Math.Abs(x) == 85 && y == 0)
+            {
+                Point P = Now.Location;
+                for (int i = 0; i < 85; i++)
+                {
+                    //Thread.Sleep(1);
+                    Now.Location = new Point(Now.Location.X - x / 85, Now.Location.Y);
+                }
+                Now.Location = buttons[empty].Location;
+                buttons[empty].Location = P;
+            }
+            if (x == 0 && Math.Abs(y) == 85)
+            {
+                Point P = Now.Location;
+                for (int i = 0; i < 85; i++)
+                {
+                    //Thread.Sleep(1);
+                    Now.Location = new Point(Now.Location.X, Now.Location.Y - y / 85); 
+                }
+                Now.Location = buttons[empty].Location;
+                buttons[empty].Location = P;
+            }
+        }
+
     }
 }
