@@ -53,10 +53,7 @@ namespace test15
                         buttons[i + j * 4].Visible = false;
                         empty = i + j * 4;
                     }
-                    else
-                    {
-                        buttons[i + j * 4].Text = array[i + j * 4].ToString();
-                    }
+                    buttons[i + j * 4].Text = array[i + j * 4].ToString();
                 }
             }
         }
@@ -88,6 +85,22 @@ namespace test15
                 Now.Location = buttons[empty].Location;
                 buttons[empty].Location = P;
             }
+            if (finish()) MessageBox.Show("Победа!");
+        }
+
+        private bool finish()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (buttons[i + j * 4].Text != (i + 1 + j * 4).ToString())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
     }
