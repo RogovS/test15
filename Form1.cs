@@ -19,6 +19,7 @@ namespace test15
         }
 
         Button[] buttons = new Button[16];
+        Button startButton = new Button();
         int empty;
 
         private static void ShuffleArray<T>(T[] array)
@@ -35,9 +36,22 @@ namespace test15
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Size = new Size(370,440);
+            startButton.Location = new Point(10, 350);
+            startButton.Size = new Size(335, 40);
+            startButton.Text = "Старт/Рестарт";
+            startButton.Font = new Font("Microsoft Sans Serif", 24.0f);
+            startButton.Click += new EventHandler(Start_Click);
+            startButton.PerformClick();
+            this.Controls.Add(startButton);
+        }
+
+        private void Start_Click(object sender, EventArgs e)
+        {
             int[] array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
             ShuffleArray(array);
-            this.Size = new Size(370,390);
+            for (int i = 0; i < 16; i++)
+                this.Controls.Remove(buttons[i]);
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
