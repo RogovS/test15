@@ -21,6 +21,7 @@ namespace test15
         Button[] buttons = new Button[16];
         Button startButton = new Button();
         int empty;
+        bool restart;
 
         private static void ShuffleArray<T>(T[] array)
         {
@@ -37,13 +38,43 @@ namespace test15
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(370,440);
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    buttons[i + j * 4] = new Button();
+                    buttons[i + j * 4].Size = new Size(80, 80);
+                    buttons[i + j * 4].Font = new Font("Microsoft Sans Serif", 24.0f);
+                    buttons[i + j * 4].Location = new Point(10 + 85 * i, 10 + 85 * j);
+                    this.Controls.Add(buttons[i + j * 4]);
+                    buttons[i + j * 4].Text = (i + 1 + j * 4).ToString();
+                }
+            }
+            buttons[15].Visible = false;
             startButton.Location = new Point(10, 350);
             startButton.Size = new Size(335, 40);
             startButton.Text = "Старт/Рестарт";
             startButton.Font = new Font("Microsoft Sans Serif", 24.0f);
             startButton.Click += new EventHandler(Start_Click);
-            startButton.PerformClick();
             this.Controls.Add(startButton);
+        }
+
+        private void AutoPlay()
+        {
+                while (finish() == false)
+                {
+                    for (int i = 0; i < 16; i++)
+                    {
+                        if (Math.Abs(buttons[i].Location.X - buttons[empty].Location.X) == 85 &&
+                            Math.Abs(buttons[i].Location.Y - buttons[empty].Location.Y) == 0 ||
+                            Math.Abs(buttons[i].Location.Y - buttons[empty].Location.Y) == 85 &&
+                            Math.Abs(buttons[i].Location.X - buttons[empty].Location.X) == 0)
+                        {
+                            buttons[i].PerformClick();
+                            //break;
+                        }
+                    }
+                }
         }
 
         private void Start_Click(object sender, EventArgs e)
@@ -70,6 +101,7 @@ namespace test15
                     buttons[i + j * 4].Text = array[i + j * 4].ToString();
                 }
             }
+            //AutoPlay();
         }
 
         private void Buttons_Click(object sender, EventArgs e)
